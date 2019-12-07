@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
-
-//void main() => runApp(MyApp());
+import 'package:flutter_app/CurrentObjectiveScreen.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: 'Navigation Basics',
+    title: 'Quest',
     home: MyApp(),
   ));
 }
@@ -35,13 +33,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Welcome to flutter',
         theme: ThemeData(
           primarySwatch: primaryBlack,
         ),
+
         home: Scaffold(
             appBar: AppBar(
-              title: Text("Title"),
+              title: RichText(
+                  text: TextSpan(text:" Title",
+                                style: TextStyle(fontWeight: FontWeight.bold,
+                                                  fontSize: 30),
+                  ),
+              ),
             ),
             body: Center(
               child: Container(
@@ -83,14 +86,14 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 230,
+                      width: double.infinity,
                       child: Padding(
                         padding: const EdgeInsets.all(40.0),
                         child: RaisedButton(
                           onPressed: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => SecondRoute()),
+                              MaterialPageRoute(builder: (context) => CurrentObjectiveScreen()),
                             );
                           },
                           child:Text('Button', style: TextStyle(fontSize: 20),),
