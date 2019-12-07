@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/CommentButton.dart';
 import 'package:flutter_app/CurrentObjectiveScreen.dart';
 
 void main() {
@@ -9,7 +10,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
 
   static const int _blackPrimaryValue = 0xFF000000;
 
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       900: Color(0xFF000000),
     },
   );
+
 
 
   @override
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
                   //mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(50.0),
+                      padding: const EdgeInsets.all(30.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
@@ -93,7 +94,7 @@ class MyApp extends StatelessWidget {
                           onPressed: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => CurrentObjectiveScreen()),
+                              MaterialPageRoute(builder: (context) => SecondRoute()),
                             );
                           },
                           child:Text('Button', style: TextStyle(fontSize: 20),),
@@ -108,21 +109,31 @@ class MyApp extends StatelessWidget {
   }
 }
 class SecondRoute extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    var button = FlatButton(
+        child: new Icon(
+          Icons.comment,
+          color: Colors.black,
+        ),
+
+        shape: new CircleBorder(),
+
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SecondRoute()),
+          );
+        },
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Second Route"),
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-              Navigator.pop(context);
-              },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
+      body: button,
+      );
   }
 }
 
