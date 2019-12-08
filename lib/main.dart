@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/CommentButton.dart';
+import 'package:flutter_app/CommentSection.dart';
 import 'package:flutter_app/CurrentObjectiveScreen.dart';
 
 void main() {
@@ -97,7 +98,8 @@ class MyApp extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => SecondRoute()),
                             );
                           },
-                          child:Text('Button', style: TextStyle(fontSize: 20),),
+                          child:Text('Button', style: TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                     )
@@ -112,29 +114,74 @@ class SecondRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var button = FlatButton(
-        child: new Icon(
-          Icons.comment,
-          color: Colors.black,
-        ),
 
-        shape: new CircleBorder(),
 
-        onPressed: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SecondRoute()),
-          );
-        },
+    var currentObjButton = FlatButton(
+      child: new Icon(
+        Icons.list,
+        color: Colors.black,
+        size: 35.0,
+      ),
+      
+      shape: new CircleBorder(),
+      color: Colors.white,
+      padding: EdgeInsets.all(12.0),
+
+      onPressed: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CurrentObjectiveScreen()), // to current objective screen
+        );
+      },
     );
 
     return Scaffold(
       appBar: AppBar(
         title: Text("Second Route"),
+        backgroundColor: Colors.black,
       ),
-      body: button,
-      );
+      body: Center(
+                child: Container(
+                  color: Colors.red, // remove in camera screen
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 15.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                            buildCommentButton(context, false),
+                            currentObjButton
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+    );
+
+  }
+
+  Widget buildCommentButton(BuildContext context, bool isButtonDisabled) {
+
+    return new FlatButton(
+      child: new Icon(
+        Icons.comment,
+        color: Colors.black,
+        size: 35.0,
+      ),
+
+      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0),),
+      color: isButtonDisabled ? Colors.white30 : Colors.white,
+      padding: EdgeInsets.only(top:10.0, right: 120.0, left: 120.0, bottom: 10.0),
+
+      onPressed: isButtonDisabled ? (){} : (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CommentSection()),
+        );
+      },
+    );
   }
 }
+
 
 

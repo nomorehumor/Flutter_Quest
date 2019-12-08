@@ -68,7 +68,8 @@ class CurrentObjectiveScreen extends StatelessWidget{
                         size: 40.0
                         ),
                       shape: new CircleBorder(),
-                        color: Colors.black,
+                      color: Colors.black,
+
                         onPressed: () {
                         Navigator.pop(context);
                         },
